@@ -1,0 +1,20 @@
+    /// Module initializer to be executed when this module is published
+    fun init(ctx: &mut TxContext) {
+        let admin = Forge {
+            id: object::new(ctx),
+            swords_created: 0,
+        };
+
+        // transfer the forge object to the module/package publisher
+        transfer::transfer(admin, tx_context::sender(ctx));
+    }
+        /// Constructor for creating swords
+    public fun new_sword(
+        forge: &mut Forge,
+        magic: u64,
+        strength: u64,
+        ctx: &mut TxContext,
+    ): Sword {
+        forge.swords_created = forge.swords_created + 1;
+        // ...
+    }
